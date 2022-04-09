@@ -95,6 +95,18 @@ def csv_tograph(x):
             plt.ylabel(yl)
             plt.title(titl)
             plt.show()
+        elif typ==4:
+            pm=input("enter the name of field from"+" "+nm+" "+"for histogram:")
+            xl=input("enter the label of x-axis:")
+            yl=input("enter the label of y-axis:")
+            titl=input("enter the title of the graph:")
+            plt.hist(a[pm])
+            plt.xlabel(xl)
+            plt.ylabel(yl)
+            plt.title(titl)
+            plt.show()
+
+
 
 
 
