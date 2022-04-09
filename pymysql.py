@@ -234,6 +234,41 @@ def pmsql_data():
             cursor.execute(query)
             con.commit()
             print(i,"data inserted succesfully")
+def fetch_fromSql(tn):
+    import mysql.connector as c
+    usr=input("input user name:")
+    password=input("input your password:")
+    dtbse=input("the name of the database:")
+    con=c.connect(host="localhost", user=usr, passwd=password, database=dtbse)
+    cursor=con.cursor(buffered=True)
+    iu=int(input("1.fetch all data /n 2.fetch only one row /n 3.fetch specific no. of rows:"))
+    if iu==1:
+        sql_select_Query = "select * from"+" "+tn
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+        
+        print("Total number of rows in table: ", cursor.rowcount)
+        print(records)
+        for row in records:
+            print(row)
+        a=input("exit")
+    elif iu==3:
+        mySql_select_Query = "select * from"+" "+tn
+        
+        cursor.execute(mySql_select_Query)
+        row_count = int(input("number of rows you want:"))
+        records = cursor.fetchmany(row_count)
+        print(records)
+
+        print("Total number of rows is: ", cursor.rowcount)
+        print("Printing ", row_count, " Laptop record using cursor.fetchmany")
+        for row in records:
+            print(row)
+    elif iu==2:
+        mySql_select_Query = "select * from"+" "+tn
+        cursor.execute(mySql_select_Query)
+        record = cursor.fetchone()
+        print(record)    
     
     
 
@@ -249,7 +284,8 @@ csv_tograph(x)
 c=input("do you want to enter data in mysql through python?y/n:")
 if c=='y':
     pmsql_data()
-
+tn=input("enter the table name:")
+fetch_fromSql(tn)
 
 
 
