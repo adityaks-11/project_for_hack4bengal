@@ -46,9 +46,10 @@ def csv_tograph(x):
         nm=x+'.csv'
         a= pd.read_csv(nm)
         print("1.Line graph")
-        print("2.Bar graph")
-        print("3.Histogram")
-        print("4.Pie chart")
+        print("2.Double line graph")
+        print("3.Bar graph")
+        print("4.Histogram")
+        print("5.Pie chart")
         typ=int(input("enter the number of the type of graph you want:"))
         if typ==1:
             pm1=input("enter the name of field from"+" "+nm+" "+"for x-axis:")
@@ -61,7 +62,7 @@ def csv_tograph(x):
             plt.ylabel(yl)
             plt.title(titl)
             plt.show()
-        if typ==2:
+        elif typ==2:
             pm1=input("enter the name of field from"+" "+nm+" "+"for x-axis:")
             pm2a=input("enter the first line parameter:")
             pm2b=input("enter the second line parameter:")
@@ -78,20 +79,26 @@ def csv_tograph(x):
             plt.title(titl)
             plt.legend()
             plt.show()
-        ans=input("plot a graph again? y/n:")
+        elif typ==3:
+            pm1=input("enter the name of field from"+" "+nm+" "+"for x-axis:")
+            pm2=input("enter the name of field from"+" "+nm+" "+"for y-axis:")
+            xl=input("enter the label of x-axis:")
+            yl=input("enter the label of y-axis:")
+            titl=input("enter the title of the graph:")
+            wid=input("enter the width of the bars,else press n for default width:")
+            if wid=='n':
+                wid=0.5
+            else:
+                wid=float(wid)
+            plt.bar(a[pm1],a[pm2],width=wid)
+            plt.xlabel(xl)
+            plt.ylabel(yl)
+            plt.title(titl)
+            plt.show()
 
 
-
-
-
-
-
-
-
-
-       
 
 #main
-to_csv()
-x=input("enter the name of .csv file")
+#to_csv()
+x=input("enter the name of .csv file:")
 csv_tograph(x)         
