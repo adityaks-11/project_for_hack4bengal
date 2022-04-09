@@ -1,3 +1,6 @@
+from tkinter import Y
+
+
 def to_csv():
     import pandas as pd
     ni=int(input("enter your preference:"))
@@ -131,6 +134,108 @@ def csv_tograph(x):
                 plt.pie(a[pm2],labels=a[pm1],explode=tuple(l))
             plt.title(titl)
             plt.show()
+def py_mysqlc():
+    import mysql.connector as c
+    usr=input("input user name:")
+    password=input("input your password:")
+    dtbse=input("the name of the database:")
+    con=c.connect(host="localhost", user=usr, passwd=password, database=dtbse)
+    if con.is_connected():
+        print ("sucessfully connected")
+def pmsql_data():
+    import mysql.connector as c
+    usr=input("input user name:")
+    password=input("input your password:")
+    dtbse=input("the name of the database:")
+    con=c.connect(host="localhost", user=usr, passwd=password, database=dtbse)
+    if con.is_connected():
+        print ("sucessfully connected")
+    cursor=con.cursor(buffered=True)
+    table_name=input("table name:")
+    cursor.execute("select * from"+" "+table_name)
+    num_fields = len(cursor.description)
+    field_names = [i[0] for i in cursor.description]
+    print(field_names)
+    l=[]
+    x="y"
+    while x=="y":
+        L=[]
+        for i in range(0,len(field_names)):
+            a=input("enter the value of"+" "+field_names[i]+":")
+            L.append(a)
+        l.append(L)
+        x=input("enter more data? y/n:")
+    print (l)
+    integ=[]
+    tups=[]
+    for i in range (0,len(field_names)):
+        h=input("is"+" "+field_names[i]+" "+"is an integer?y/n")
+        if h=='y':
+            integ.append(i)
+            tups.append({})
+        else:
+            tups.append('{}')
+    tupl=tuple(tups)
+    for i in range (0,len(l)):
+        for k in integ:
+            l[i][k]=int(l[i][k])
+    print(l)
+    for i in range(0,len(l)):
+        if len(tupl)==1:
+            query="Insert into marks_tables values"+str(tupl).format(l[i][0])
+            print(query)
+            cursor.execute(query)
+            con.commit()
+            print("data inserted succesfully")
+        elif len(tupl)==2:
+            query="Insert into marks_tables values"+str(tupl).format(l[i][0],l[i][1])
+            print(query)
+            cursor.execute(query)
+            con.commit()
+            print("data inserted succesfully")
+        elif len(tupl)==3:
+            query="Insert into"+" "+table_name+" "+"values"+str(tupl).format(l[i][0],l[i][1],l[i][2])
+            cursor.execute(query)
+            con.commit()
+            print("data inserted succesfully")
+        elif len(tupl)==4:
+            query="Insert into"+" "+table_name+" "+"values"+str(tupl).format(l[i][0],l[i][1],l[i][2],l[i][3])
+            print(query)
+            cursor.execute(query)
+            con.commit()
+            print("data inserted succesfully")
+        elif len(tupl)==5:
+            query="Insert into"+" "+table_name+" "+"values"+str(tupl).format(l[i][0],l[i][1],l[i][2],l[i][3],l[i][4])
+            print(query)
+            cursor.execute(query)
+            con.commit()
+            print("data inserted succesfully")
+        elif len(tupl)==6:
+            query="Insert into"+" "+table_name+" "+"values"+str(tupl).format(l[i][0],l[i][1],l[i][2],l[i][3],l[i][4],l[i][5])
+            print(query)
+            cursor.execute(query)
+            con.commit()
+            print("data inserted succesfully")
+        elif len(tupl)==7:
+            query="Insert into"+" "+table_name+" "+"values"+str(tupl).format(l[i][0],l[i][1],l[i][2],l[i][3],l[i][4],l[i][5],l[i][6])
+            print(query)
+            cursor.execute(query)
+            con.commit()
+            print("data inserted succesfully")
+        elif len(tupl)==8:
+            query="Insert into"+" "+table_name+" "+"values"+str(tupl).format(l[i][0],l[i][1],l[i][2],l[i][3],l[i][4],l[i][5],l[i][6],l[i][7])
+            print(query)
+            cursor.execute(query)
+            con.commit()
+            print("data inserted succesfully")
+        elif len(tupl)==9:
+            query="Insert into"+" "+table_name+" "+"values"+str(tupl).format(l[i][0],l[i][1],l[i][2],l[i][3],l[i][4],l[i][5],l[i][6],l[i][7],l[i][8])
+            print(query)
+            cursor.execute(query)
+            con.commit()
+            print(i,"data inserted succesfully")
+    
+    
 
 
 
@@ -138,6 +243,14 @@ def csv_tograph(x):
 
 
 #main
-#to_csv()
+to_csv()
 x=input("enter the name of .csv file:")
-csv_tograph(x)         
+csv_tograph(x)  
+c=input("do you want to enter data in mysql through python?y/n:")
+if c=='y':
+    pmsql_data()
+
+
+
+
+
