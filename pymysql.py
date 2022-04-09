@@ -105,6 +105,33 @@ def csv_tograph(x):
             plt.ylabel(yl)
             plt.title(titl)
             plt.show()
+        elif typ==5:
+            pm1=input("enter the name of field from"+" "+nm+" "+"for name of sectors of pie chart:")
+            pm2=input("enter the name of field from"+" "+nm+" "+"for values:")
+            titl=input("enter the title of the graph:")
+            exp=input("do you want any sector(s) exploded? y/n:")
+            if exp=='y':
+                l=[]
+                for i in range(0,len(a[pm1])):
+                    ep=input("do you want"+" "+str(a[pm1][i])+" "+"exploded?y/n:")
+                    if ep=='y':
+                        vl=float(input("input the value by which it would be exploded:"))
+                        l.append(vl)
+                    else:
+                        l.append(0)
+            else:
+                l=[]
+                for i in range(0,len(a[pm1])):
+                    l.append(0)
+            #print(l1)
+            pct=input("do you want percentage of every sector?y/n:")
+            if pct=='y':
+                plt.pie(a[pm2],labels=a[pm1],autopct='%0.1f%%',explode=tuple(l))
+            else:
+                plt.pie(a[pm2],labels=a[pm1],explode=tuple(l))
+            plt.title(titl)
+            plt.show()
+
 
 
 
