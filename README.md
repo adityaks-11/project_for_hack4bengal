@@ -2,6 +2,10 @@
 This is our project for hack4bengal hackathon
 
 <img src="https://github.com/adityaks-11/project_for_hack4bengal/blob/master/logo.jpeg" width="250" height="250" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> d82aed87ac80e5ea78f3d9ed522548a92215a9f2
 
 # Description
 Our Python-based platform helps users to analyze, fetch, keep and retrieve data. It also makes data visualization easier via statistic tools, deriving data from CSV files and MySQL occurs at a click
