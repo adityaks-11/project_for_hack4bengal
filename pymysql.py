@@ -417,25 +417,6 @@ exit=input("Press enter key to exit")
 
 
 
-#main
-#to_csv()
-#x=input("enter the name of .csv file:")
-#a=x+".csv"
-#csv_tograph(a)  
-#c=input("do you want to enter data in mysql through python?y/n:")
-#if c=='y':
- #   pmsql_data()
-#tn=input("enter the table name:")
-#fetch_fromSql(tn)
-
-
-#tn=input("enter the table name:")
-#fmn=mysql_tograph(tn)
-#print(fmn,"exported successfully")
-
-
-#tn=input("enter the table name:")
-#mysql_tograph(tn)
 
 
 
