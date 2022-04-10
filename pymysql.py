@@ -3,7 +3,7 @@ from tkinter import Y
 
 def to_csv():
     import pandas as pd
-    ni=int(input("enter your preference:"))
+    ni=1
     if ni==1:
         col=int(input("enter the number of columns:"))
         colum_list=[]
@@ -242,14 +242,16 @@ def fetch_fromSql(tn):
     dtbse=input("the name of the database:")
     con=c.connect(host="localhost", user=usr, passwd=password, database=dtbse)
     cursor=con.cursor(buffered=True)
-    iu=int(input("1.fetch all data /n 2.fetch only one row /n 3.fetch specific no. of rows:"))
+    print("1. Fetch all rows from"+" "+tn)
+    print("2. Fetch only One row from"+" "+tn)
+    print("3. Fetch specific no. of rows from"+" "+tn)
+    iu=int(input("enter the operation number you want to perform:"))
     if iu==1:
         sql_select_Query = "select * from"+" "+tn
         cursor.execute(sql_select_Query)
         records = cursor.fetchall()
         
         print("Total number of rows in table: ", cursor.rowcount)
-        print(records)
         for row in records:
             print(row)
         a=input("exit")
@@ -362,7 +364,51 @@ def mysql_tograph(tns):
 
 
 
-    
+#main
+print("Welcome to SUS - See Ur Stats")  
+o=input("press enter key to continue")
+ans='y'
+while ans=='y':
+    print("As of now we provide:")
+    print("1. Input data and produce a .csv file")
+    print("2. Take data from an .csv file and plot graphs")
+    print("3. Enter data into MySql table")
+    print("4. Fetch data from Mysql table")
+    print("5. Convert a MySql table into a .csv file")
+    print("6. plot graphs based on MySql data")
+    oper=int(input("enter the operation number you want to perform:"))
+    if oper==1:
+        to_csv()
+    elif oper==2:
+        cf=input("enter the name of the csv file without .csv extension:")
+        cfn=cf+".csv"
+        csv_tograph(cfn)
+    elif oper==3:
+        pmsql_data()
+    elif oper==4:
+        tnme=input("enter the name of table that you want to fetch data from:")
+        fetch_fromSql(tnme)
+    elif oper==5:
+        tnme=input("enter the name of table that you want to convert into .csv file:")
+        b=sql_toCsv(tnme)
+        print(b,"exported successfully")
+    elif oper==6:
+        tnme=input("enter the name of table that you want to plot graphs of:")
+        mysql_tograph(tnme)
+    ans=input("Perform tasks again? y/n:")
+print("Thank you :) <3")
+exit=input("Press enter key to exit")
+
+
+
+
+
+
+
+
+
+
+
     
     
 
@@ -388,8 +434,8 @@ def mysql_tograph(tns):
 #print(fmn,"exported successfully")
 
 
-tn=input("enter the table name:")
-mysql_tograph(tn)
+#tn=input("enter the table name:")
+#mysql_tograph(tn)
 
 
 
