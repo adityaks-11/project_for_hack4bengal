@@ -46,7 +46,7 @@ def csv_tograph(x):
     from matplotlib import pyplot as plt
     ans='y'
     while ans=='y':
-        nm=x+'.csv'
+        nm=x
         a= pd.read_csv(nm)
         print("1.Line graph")
         print("2.Double line graph")
@@ -134,6 +134,7 @@ def csv_tograph(x):
                 plt.pie(a[pm2],labels=a[pm1],explode=tuple(l))
             plt.title(titl)
             plt.show()
+        ans=input("do it again?y/n:")
 def py_mysqlc():
     import mysql.connector as c
     usr=input("input user name:")
@@ -355,6 +356,12 @@ def sql_toCsv(tn):
     nmcsv=nm+".csv"
     df.to_csv(nmcsv)
     return(nmcsv)
+def mysql_tograph(tns):
+    a=sql_toCsv(tns)
+    csv_tograph(a)
+
+
+
     
     
     
@@ -367,7 +374,8 @@ def sql_toCsv(tn):
 #main
 #to_csv()
 #x=input("enter the name of .csv file:")
-#csv_tograph(x)  
+#a=x+".csv"
+#csv_tograph(a)  
 #c=input("do you want to enter data in mysql through python?y/n:")
 #if c=='y':
  #   pmsql_data()
@@ -375,9 +383,15 @@ def sql_toCsv(tn):
 #fetch_fromSql(tn)
 
 
+#tn=input("enter the table name:")
+#fmn=mysql_tograph(tn)
+#print(fmn,"exported successfully")
+
+
 tn=input("enter the table name:")
-fmn=sql_toCsv(tn)
-print(fmn,"exported successfully")
+mysql_tograph(tn)
+
+
 
 
 
