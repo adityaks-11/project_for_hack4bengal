@@ -268,7 +268,94 @@ def fetch_fromSql(tn):
         mySql_select_Query = "select * from"+" "+tn
         cursor.execute(mySql_select_Query)
         record = cursor.fetchone()
-        print(record)    
+        print(record)
+def sql_toCsv(tn):
+    import mysql.connector as c
+    import pandas as pd
+    usr=input("input user name:")
+    password=input("input your password:")
+    dtbse=input("the name of the database:")
+    con=c.connect(host="localhost", user=usr, passwd=password, database=dtbse)
+    cursor=con.cursor(buffered=True)
+    sql_select_Query = "select * from"+" "+tn
+    cursor.execute(sql_select_Query)
+    records=cursor.fetchall()
+    cursor.execute("select * from"+" "+tn)
+    num_fields = len(cursor.description)
+    field_names = [i[0] for i in cursor.description]
+    print(field_names)
+        
+    print("Total number of rows in table: ", cursor.rowcount)
+    L=[]
+    l0=[]
+    l1=[]
+    l2=[]
+    l3=[]
+    l4=[]
+    l5=[]
+    l6=[]
+    l7=[]
+    l8=[]
+    l9=[]
+    l10=[]
+    for i in range (0,len(records)):
+        l0.append(records[i][0])
+        if 1<len(records[i]):
+            l1.append(records[i][1])
+        if 2<len(records[i]):
+            l2.append(records[i][2])
+        if 3<len(records[i]):
+            l3.append(records[i][3])
+        if 4<len(records[i]):
+            l4.append(records[i][4])
+        if 5<len(records[i]):
+            l5.append(records[i][5])
+        if 6<len(records[i]):
+            l6.append(records[i][6])
+        if 7<len(records[i]):
+            l7.append(records[i][7])
+        if 8<len(records[i]):
+            l8.append(records[i][8])
+        if 9<len(records[i]):
+            l9.append(records[i][9])
+        if 10<len(records[i]):
+            l10.append(records[i][10])
+    if l0!=[]:
+        L.append(l0)
+    if l1!=[]:
+        L.append(l1)
+    if l2!=[]:
+        L.append(l2)
+    if l3!=[]:
+        L.append(l3)
+    if l4!=[]:
+        L.append(l4)
+    if l5!=[]:
+        L.append(l5)
+    if l6!=[]:
+        L.append(l6)
+    if l7!=[]:
+        L.append(l7)
+    if l8!=[]:
+        L.append(l8)
+    if l9!=[]:
+        L.append(l9)
+    if l10!=[]:
+        L.append(l10)
+    cursor.execute("select * from"+" "+tn)
+    num_fields = len(cursor.description)
+    field_names = [i[0] for i in cursor.description]
+    if len(L)!=len(field_names):
+        print("invalid data")
+    dicto={}
+    for m in range (0,len(field_names)):
+        dicto[field_names[m]]=L[m]
+    df= pd.DataFrame(dicto)
+    nm=input("enter your file name:")
+    nmcsv=nm+".csv"
+    df.to_csv(nmcsv)
+    return(nmcsv)
+    
     
     
 
@@ -278,14 +365,19 @@ def fetch_fromSql(tn):
 
 
 #main
-to_csv()
-x=input("enter the name of .csv file:")
-csv_tograph(x)  
-c=input("do you want to enter data in mysql through python?y/n:")
-if c=='y':
-    pmsql_data()
+#to_csv()
+#x=input("enter the name of .csv file:")
+#csv_tograph(x)  
+#c=input("do you want to enter data in mysql through python?y/n:")
+#if c=='y':
+ #   pmsql_data()
+#tn=input("enter the table name:")
+#fetch_fromSql(tn)
+
+
 tn=input("enter the table name:")
-fetch_fromSql(tn)
+fmn=sql_toCsv(tn)
+print(fmn,"exported successfully")
 
 
 
