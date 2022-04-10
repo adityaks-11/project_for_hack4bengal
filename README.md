@@ -1,7 +1,8 @@
 # SUS- See Ur Stats
 This is our project for hack4bengal hackathon
 
-![logo](https://user-images.githubusercontent.com/95757039/162628238-cb2c32fa-1840-4562-881c-b479db817699.jpeg)
+<img src="https://github.com/adityaks-11/project_for_hack4bengal/blob/master/logo.jpeg" width="250" height="250" />
+
 
 # Description
 Our Python-based platform helps users to analyze, fetch, keep and retrieve data. It also makes data visualization easier via statistic tools, deriving data from CSV files and MySQL occurs at a click
